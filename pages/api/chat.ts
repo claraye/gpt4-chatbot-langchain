@@ -53,7 +53,7 @@ export default async function handler(
     //     collectionName: 'gpttest'
     //   },
     // );
-    const directory = "C:/GitHubRepo/gpt4-pdf-chatbot-langchain/hnsw_store";
+    const directory = "C:/GitHubRepo/gpt4-chatbot-langchain/hnsw_store";
     const vectorStore = await HNSWLib.load(
       directory,
       new OpenAIEmbeddings()

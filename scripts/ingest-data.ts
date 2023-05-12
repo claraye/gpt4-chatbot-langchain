@@ -57,9 +57,16 @@ export const run = async () => {
       collectionName: 'gpttest',
     });
     */
-    const directory = "C:/GitHubRepo/gpt4-pdf-chatbot-langchain/hnsw_store";
-    const vectorStore = await HNSWLib.fromDocuments(docs, embeddings);
-    await vectorStore.save(directory);
+    const directory = "C:/GitHubRepo/gpt4-chatbot-langchain/hnsw_store";
+    try {
+      const vectorStore = await HNSWLib.load(directory, embeddings);
+      await vectorStore.addDocuments(docs);
+      await vectorStore.save(directory);
+    } catch (error) {
+      console.log('No knowledgebase was found, will create a new one.', error)
+      const vectorStore = await HNSWLib.fromDocuments(docs, embeddings);
+      await vectorStore.save(directory);
+    }
   } catch (error) {
     console.log('error', error);
     throw new Error('Failed to ingest your data');

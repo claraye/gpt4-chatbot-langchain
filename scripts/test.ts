@@ -52,8 +52,8 @@ export const run = async () => {
     // const collection = await chroma.getOrCreateCollection('test');
     // const collections = chroma.listCollections();
 
-    const directory = "C:/GitHubRepo/gpt4-pdf-chatbot-langchain/hnsw_store";
-    /*
+    const directory = "C:/GitHubRepo/gpt4-chatbot-langchain/hnsw_store";    
+    /**/
     const vectorStore = await HNSWLib.fromTexts(
       [
         "Tortoise: Labyrinth? Labyrinth? Could it Are we in the notorious Little\
@@ -70,8 +70,8 @@ export const run = async () => {
       [{ id: 2 }, { id: 1 }, { id: 3 }],
       new OpenAIEmbeddings(),
     );
-    await vectorStore.save(directory);
-      */
+    // await vectorStore.save(directory);
+
     const loadedVectorStore = await HNSWLib.load(
       directory,
       new OpenAIEmbeddings()
